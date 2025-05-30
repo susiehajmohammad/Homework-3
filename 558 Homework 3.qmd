@@ -1,0 +1,37 @@
+---
+title: "558 Homework 3"
+author: "Susan Hajmohammad"
+format: pdf
+editor: visual
+---
+
+```{r}
+
+library(tidyverse)
+library(palmerpenguins)
+
+```
+
+##Task 1
+
+### Question a:
+
+```{r}
+
+data_a <- read_csv("data.txt")
+
+```
+
+We can't use read_csv() function for reading in this dataset, because the delimiator for that function is flat-file, comma separated or tab separated.The function we can use is read_csv2() because it uses the ";" as the separator which is what we have in our dataset.
+
+```{r}
+data <- read_csv2("data.txt")
+data
+```
+
+### Question b
+
+```{r}
+data2 <- read_delim("data2.txt", delim = "6", col_types = "fdc")
+data2
+```
