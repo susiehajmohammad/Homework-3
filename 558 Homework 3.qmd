@@ -35,3 +35,58 @@ data
 data2 <- read_delim("data2.txt", delim = "6", col_types = "fdc")
 data2
 ```
+
+
+## Task 2
+
+### Question a
+
+```{r}
+
+trailblazer <- read.csv("trailblazer.csv")
+glimpse(trailblazer)
+
+```
+### Question b
+
+```{r}
+
+trailblazer_long <- trailblazer |> 
+  pivot_longer(cols = Game1_Home:Game10_Home, 
+               names_to = c("Game", "Location"),
+               names_sep = "_",
+               values_to = "Points") 
+
+trailblazer_long
+ 
+```
+
+### Question c
+
+```{r}
+
+trailblazer_wide <- trailblazer_long |> 
+  pivot_wider(names_from = Location,
+        values_from = Points)|>
+  group_by(Player)|>
+  mutate(mean_home = mean(Home, na.rm = TRUE))|>
+  mutate(mean_away = mean(Away, na.rm = TRUE))|>
+  mutate(diff = mean_home - mean_away)|>
+  arrange(desc(diff))
+
+
+trailblazer_wide
+
+```
+On average Jusuf Nurkic score more points at home than away in the first 10 games. 
+
+
+
+
+
+
+
+
+
+
+
