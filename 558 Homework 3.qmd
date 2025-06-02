@@ -80,6 +80,40 @@ trailblazer_wide
 ```
 On average Jusuf Nurkic score more points at home than away in the first 10 games. 
 
+## Task 3
+### Question a 
+
+```{r}
+library(palmerpenguins)
+data(penguins)
+head(penguins)
+
+penguins |>
+select(species, island, bill_length_mm) |>
+pivot_wider(
+names_from = island, values_from = bill_length_mm
+)
+
+```
+What is going on here: Using pivot_wider() here is complicated because there are duplicate penguins that are the same species per island so it doesn't which bill length to use for each species. 
+
+<list> means that for each column, instead of there being a single value for each penguin species, there is instead a list of values in each cell. 
+
+<dbl 52> here means that for the Adelie species instead of being one number it's actually a vector of 52 values.  
+
+<null> means there weren't any of that penguin species on that island, so there are no values for that cell. 
+
+### Question b
+
+```{r}
+
+penguins |>
+select(species, island, bill_length_mm) |>
+  count(species, island) |>
+pivot_wider(names_from = island, 
+      values_from = n) 
+
+```
 
 
 
