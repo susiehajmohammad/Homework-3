@@ -115,6 +115,29 @@ pivot_wider(names_from = island,
 
 ```
 
+## Task 4
+
+### Question a
+
+Replace bill length Adelie NA with 26.  Replace bill length Gentoo NA with 30. 
+
+```{r}
+
+
+  
+
+penguins |> 
+  #select(species, island, bill_length_mm)|>
+  mutate(bill_length_mm = 
+           case_when(is.na(bill_length_mm) & species == "Adelie" ~ 26,
+         is.na(bill_length_mm) & species == "Gentoo" ~ 30,
+         .default = bill_length_mm))|>
+  arrange(bill_length_mm) |> 
+  slice(1:10)
+  
+
+
+```
 
 
 
